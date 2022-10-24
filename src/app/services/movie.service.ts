@@ -1,25 +1,36 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Movie } from '../movie';
+import { map, Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
+import { Movie } from '../model/movie';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MovieService {
-  constructor(private http: HttpClient) {}
-  private movieApiUrl =
-    'https://imdb8.p.rapidapi.com/title/v2/find?title=game&titleType=movie&limit=20&sortArg=moviemeter%2Casc&keyword=action';
+  movieApiUrl: string = '';
+  language: string;
+  region: string;
 
-  getMovieList(): Observable<Movie[]> {
-    const options = {
-      method: 'GET',
-      headers: {
-        'X-RapidAPI-Key': '98f692ba40mshfc304c4d83f8757p13bd79jsne01a09877682',
-        'X-RapidAPI-Host': 'imdb8.p.rapidapi.com',
-      },
-    };
-    console.log(this.http.get<Movie[]>(this.movieApiUrl, options));
-    return this.http.get<Movie[]>(this.movieApiUrl, options);
+  constructor(private http: HttpClient) {
+    this.movieApiUrl = 'https://api.themoviedb.org/3/movie/';
+    this.language = 'en-US';
+    this.region = 'US';
   }
+  // https://api.themoviedb.org/3/movie/popular?api_key=4f35139a7aeecfe122ffd50f642cd92b&language=en-US&page=1
+
+  getMovies(): Observable<Movie> {
+    return this.http.get<Movie>(
+      this.movieApiUrl +
+        'popular?api_key=' +
+        environment.api_Key +
+        '&language=en-US&page=1'
+    );
+  }
+  getMovieImage(movieID: number): Observable<Movie> {
+    return this.http.get<Movie>(
+      `${this.movieApiUrl}+/movie/${movieID}/images?api_key=${environment.api_Key}&language=en-US`
+    );
+  }
+  // https://api.themoviedb.org/3/movie/{movie_id}/images?api_key=<<api_key>>&language=en-US
 }

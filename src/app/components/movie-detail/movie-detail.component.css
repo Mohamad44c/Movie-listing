@@ -1,0 +1,32 @@
+* {
+  color: white;
+}
+.movieContainer {
+  margin-top: 20px;
+}
+.movieDetails {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.movieImg {
+  width: 300px;
+  height: 450px;
+}
+
+.movieTitle {
+  font-size: 35px;
+}
+.movieRating {
+  font-size: 16px;
+}
+.moviePlotHeader {
+  font-weight: bold;
+  font-size: 18px;
+}
+.moviePlot {
+  font-size: 16px;
+}
+.movieCast {
+  font-size: 16px;
+}

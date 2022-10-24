@@ -1,0 +1,13 @@
+.footerName,
+.footerApp {
+  color: white;
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  overflow: hidden;
+}

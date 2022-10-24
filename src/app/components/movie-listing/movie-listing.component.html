@@ -1,24 +1,11 @@
-<div
-  id="carouselExampleCaptions"
-  class="carousel slide pb-4"
-  data-bs-ride="false"
+<div 
+  class="carousel slide pb-4" 
 >
-  <div class="carousel-indicators">
-    <button
-      type="button"
-      data-bs-target="#carouselExampleCaptions"
-      data-bs-slide-to="0"
-      class="active"
-      aria-current="true"
-      aria-label="Slide 1"
-    ></button>
-  </div>
   <div class="carousel-inner">
-    <div class="carousel-item active" style="height: 500px">
+    <div class="carousel-item active" style="height: 95vh">
       <img
         src="https://assets.nflxext.com/ffe/siteui/vlv3/28b69a57-cadf-43d9-8a95-e5f2e11199de/ac7693e4-01bf-491a-a784-885b4e0e284c/LB-en-20221010-popsignuptwoweeks-perspective_alpha_website_large.jpg"
         class="d-block w-100"
-        alt="..."
       />
       <div class="carousel-caption d-none d-md-block">
         <h1>Browse Movies & TV Shows</h1>
@@ -27,20 +14,21 @@
     </div>
   </div>
 </div>
-<!-- carousel end -->
+
 <div class="container">
   <div class="row">
-    <!-- *ngFor="let movie of movies" -->
-    <div class="card col-md-3" >
-      <img src="..." class="card-img-top" alt="..." />
-      <div class="card-body">
-        <h5 class="card-title"></h5>
-        <p class="card-text">
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
+    <h1>Popular Movies</h1>
+    <div
+      class="card col-md-4"
+      routerLink="/moviedetails"
+      *ngFor="let movie of popularMovies?.results; let i = index"
+    >
+      <img src="{{ movie.backdrop_path }}" class="card-img-top" />
+      <div class="movie-body">
+        <h4 class="movie-title mt-2">{{ movie.title }}</h4>
+        <p class="movie-rating">Rated {{ movie.vote_average }}/10</p>
       </div>
     </div>
+    <!--  -->
   </div>
 </div>
