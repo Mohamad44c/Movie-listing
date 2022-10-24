@@ -4,6 +4,7 @@
   border-radius: 10px;
   background-color: transparent;
 }
+
 .card img {
   border-radius: 10px;
   width: 70%;
@@ -12,11 +13,13 @@
   border-radius: 4px 4px 0 0;
   transition: 0.4s;
 }
+
 .card h4,
 p {
   color: white;
   letter-spacing: 1px;
 }
+
 .carousel-caption {
   position: absolute;
   top: 50%;
@@ -24,13 +27,16 @@ p {
   transform: translate(-50%, -50%);
   text-align: center;
 }
+
 .carousel-caption h1 {
   font-size: 50px;
 }
+
 .carousel-caption p {
   font-size: 40px;
 }
+
 .row h1 {
   font-size: 35px;
-  color: white;
+  color: #f0ad4e;
 }

@@ -11,34 +11,49 @@ import { environment } from 'src/environments/environment';
 })
 export class MovieListingComponent implements OnInit {
   popularMovies!: Movie;
+  topRatedMovies!: Movie;
+  upComingMovies!: Movie;
   images!: any;
   constructor(private movieService: MovieService) {}
 
   ngOnInit(): void {
     this.getPopularMovies();
-    // this.getMovieImage();
+    this.getTopRatedMovies();
+    this.getUpcoming();
   }
 
   getPopularMovies() {
-    this.movieService.getMovies().subscribe(
+    this.movieService.getPopularMovies().subscribe(
       (data) => {
         this.popularMovies = this.modifyData(data);
         console.log(this.popularMovies);
       },
       (err) => {
-        console.log('Not able to get popular movies ', err);
+        console.log('Popular Movies ' + 'Not able to get popular movies ', err);
       }
     );
   }
 
-  getMovieImage(id: number) {
-    this.movieService.getMovieImage(id).subscribe(
+  getTopRatedMovies() {
+    this.movieService.getTopRatedMovies().subscribe(
       (data) => {
-        this.images = this.modifyData(data);
-        console.log(this.popularMovies);
+        this.topRatedMovies = this.modifyData(data);
+        console.log('top rated movies ' + this.topRatedMovies);
       },
       (err) => {
-        console.log('Not able to get popular movies ', err);
+        console.log('Not able to get top rated movies ', err);
+      }
+    );
+  }
+
+  getUpcoming() {
+    this.movieService.getUpcomingMovies().subscribe(
+      (data) => {
+        this.upComingMovies = this.modifyData(data);
+        console.log('upcoming movies ' + this.upComingMovies);
+      },
+      (err) => {
+        console.log('Not able to get upcoming movies ', err);
       }
     );
   }
@@ -47,8 +62,7 @@ export class MovieListingComponent implements OnInit {
     if (movies.results) {
       movies.results.forEach((element) => {
         element.backdrop_path =
-          'https://image.tmdb.org/t/p/original' +
-          element.backdrop_path;
+          'https://image.tmdb.org/t/p/original' + element.backdrop_path;
         if (!element.title) {
           element.title = element?.name;
         }
@@ -56,5 +70,4 @@ export class MovieListingComponent implements OnInit {
     }
     return movies;
   }
-
 }

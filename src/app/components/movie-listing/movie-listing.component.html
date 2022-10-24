@@ -1,6 +1,4 @@
-<div 
-  class="carousel slide pb-4" 
->
+<div class="carousel slide pb-4">
   <div class="carousel-inner">
     <div class="carousel-item active" style="height: 95vh">
       <img
@@ -14,7 +12,7 @@
     </div>
   </div>
 </div>
-
+<!-- popular movies -->
 <div class="container">
   <div class="row">
     <h1>Popular Movies</h1>
@@ -27,6 +25,42 @@
       <div class="movie-body">
         <h4 class="movie-title mt-2">{{ movie.title }}</h4>
         <p class="movie-rating">Rated {{ movie.vote_average }}/10</p>
+      </div>
+    </div>
+    <!--  -->
+  </div>
+</div>
+<!-- top rated movies -->
+<div class="container">
+  <div class="row">
+    <h1>Top Rated Movies</h1>
+    <div
+      class="card col-md-4"
+      routerLink="/moviedetails"
+      *ngFor="let topMovie of topRatedMovies?.results; let i = index"
+    >
+      <img src="{{ topMovie.backdrop_path }}" class="card-img-top" />
+      <div class="movie-body">
+        <h4 class="movie-title mt-2">{{ topMovie.title }}</h4>
+        <p class="movie-rating">Rated {{ topMovie.vote_average }}/10</p>
+      </div>
+    </div>
+    <!--  -->
+  </div>
+</div>
+<!-- upcoming -->
+<div class="container">
+  <div class="row">
+    <h1>Upcoming Movies</h1>
+    <div
+      class="card col-md-4"
+      routerLink="/moviedetails"
+      *ngFor="let upcomingMovie of upComingMovies?.results; let i = index"
+    >
+      <img src="{{ upcomingMovie.backdrop_path }}" class="card-img-top" />
+      <div class="movie-body">
+        <h4 class="movie-title mt-2">{{ upcomingMovie.title }}</h4>
+        <p class="movie-rating">Rated {{ upcomingMovie.vote_average }}/10</p>
       </div>
     </div>
     <!--  -->

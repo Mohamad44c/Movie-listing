@@ -9,17 +9,13 @@ import { Movie } from '../model/movie';
 })
 export class MovieService {
   movieApiUrl: string = '';
-  language: string;
-  region: string;
 
   constructor(private http: HttpClient) {
     this.movieApiUrl = 'https://api.themoviedb.org/3/movie/';
-    this.language = 'en-US';
-    this.region = 'US';
   }
   // https://api.themoviedb.org/3/movie/popular?api_key=4f35139a7aeecfe122ffd50f642cd92b&language=en-US&page=1
 
-  getMovies(): Observable<Movie> {
+  getPopularMovies(): Observable<Movie> {
     return this.http.get<Movie>(
       this.movieApiUrl +
         'popular?api_key=' +
@@ -27,10 +23,22 @@ export class MovieService {
         '&language=en-US&page=1'
     );
   }
-  getMovieImage(movieID: number): Observable<Movie> {
+
+  getTopRatedMovies(): Observable<Movie> {
     return this.http.get<Movie>(
-      `${this.movieApiUrl}+/movie/${movieID}/images?api_key=${environment.api_Key}&language=en-US`
+      this.movieApiUrl +
+        'top_rated?api_key=' +
+        environment.api_Key +
+        '&language=en-US&page=1'
     );
   }
-  // https://api.themoviedb.org/3/movie/{movie_id}/images?api_key=<<api_key>>&language=en-US
+
+  getUpcomingMovies(): Observable<Movie> {
+    return this.http.get<Movie>(
+      this.movieApiUrl +
+        'upcoming?api_key=' +
+        environment.api_Key +
+        '&language=en-US&page=1'
+    );
+  }
 }
