@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Movie } from 'src/app/model/movie';
 import { MovieService } from 'src/app/services/movie.service';
 import { environment } from 'src/environments/environment';
@@ -10,12 +10,13 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./movie-listing.component.css'],
 })
 export class MovieListingComponent implements OnInit {
+  @Input() public model!: any;
   popularMovies!: Movie;
   topRatedMovies!: Movie;
   upComingMovies!: Movie;
   images!: any;
-  constructor(private movieService: MovieService) {}
 
+  constructor(private movieService: MovieService) {}
   ngOnInit(): void {
     this.getPopularMovies();
     this.getTopRatedMovies();

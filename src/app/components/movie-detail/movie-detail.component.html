@@ -7,15 +7,33 @@
         alt=""
       />
     </div>
-    <div class="col-md-7 movieDetails">
-      <h1 class="movieTitle">Title</h1>
-      <h1 class="movieRating">8/10</h1>
+    <div
+      class="col-md-7 movieDetails"
+      *ngFor="let movie of movieDetails?.results; let i = index"
+    >
+      <h1 class="movieTitle">{{ movie.title }}</h1>
+      <h1 class="movieRating">Rated {{ movie.vote_average }}/10</h1>
       <h1 class="moviePlotHeader">Overview</h1>
       <p class="moviePlot">
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quibusdam
-        voluptatum illum, modi minima laborum sequi cupiditatealias animi. Quia!
+        {{movie.overview}}
       </p>
       <h1 class="movieCast">Cast: Cast member 1, cast member 2</h1>
+    </div>
+  </div>
+</div>
+<div class="container mt-4 border-top">
+  <div class="row">
+    <h1>Recommended Movies</h1>
+    <div
+      class="card col-md-4"
+      routerLink="/moviedetails"
+      *ngFor="let movie of recommendedMovies?.results; let i = index"
+    >
+      <img src="{{ movie.backdrop_path }}" class="card-img-top" />
+      <div class="movie-body">
+        <h4 class="movie-title mt-2">{{ movie.title }}</h4>
+        <p class="movie-rating">Rated {{ movie.vote_average }}/10</p>
+      </div>
     </div>
   </div>
 </div>

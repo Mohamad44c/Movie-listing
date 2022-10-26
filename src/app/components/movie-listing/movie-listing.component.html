@@ -13,12 +13,12 @@
   </div>
 </div>
 <!-- popular movies -->
-<div class="container">
+<div class="container" id="section_popular">
   <div class="row">
     <h1>Popular Movies</h1>
     <div
       class="card col-md-4"
-      routerLink="/moviedetails"
+      [routerLink]="'/moviedetails/' + movie.id"
       *ngFor="let movie of popularMovies?.results; let i = index"
     >
       <img src="{{ movie.backdrop_path }}" class="card-img-top" />
@@ -31,7 +31,7 @@
   </div>
 </div>
 <!-- top rated movies -->
-<div class="container">
+<div class="container" id="section_top">
   <div class="row">
     <h1>Top Rated Movies</h1>
     <div
@@ -49,7 +49,7 @@
   </div>
 </div>
 <!-- upcoming -->
-<div class="container">
+<div class="container" id="section_upcoming">
   <div class="row">
     <h1>Upcoming Movies</h1>
     <div
