@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { map, Observable, take } from 'rxjs';
+import { take } from 'rxjs';
 import { Movie } from 'src/app/model/movie';
 import { MovieService } from 'src/app/services/movie.service';
+
 @Component({
   selector: 'app-movie-detail',
   templateUrl: './movie-detail.component.html',
@@ -22,11 +23,10 @@ export class MovieDetailComponent implements OnInit {
     let id: number = 0;
     this.route.params.subscribe((params) => {
       id = params['id'];
-      console.log('The id of this route is: ', id);
+      this.getMovieDetails(id);
+      this.getRecommendedMovies(id);
+      // console.log('The id of this route is: ', id);
     });
-
-    this.getMovieDetails(id);
-    this.getRecommendedMovies(id);
   }
 
   getMovieDetails(id: number) {
@@ -51,7 +51,7 @@ export class MovieDetailComponent implements OnInit {
     this.movieService.getRecommendedMovies(id).subscribe(
       (data) => {
         this.recommendedMovies = this.modifyData(data);
-        console.log(this.recommendedMovies);
+        // console.log(this.recommendedMovies);
       },
       (err) => {
         console.log(

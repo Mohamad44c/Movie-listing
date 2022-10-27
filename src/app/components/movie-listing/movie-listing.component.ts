@@ -1,8 +1,6 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { Movie } from 'src/app/model/movie';
 import { MovieService } from 'src/app/services/movie.service';
-import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-movie-listing',
@@ -39,7 +37,7 @@ export class MovieListingComponent implements OnInit {
     this.movieService.getTopRatedMovies().subscribe(
       (data) => {
         this.topRatedMovies = this.modifyData(data);
-        console.log('top rated movies ' + this.topRatedMovies);
+        // console.log('top rated movies ' + this.topRatedMovies);
       },
       (err) => {
         console.log('Not able to get top rated movies ', err);
@@ -51,7 +49,7 @@ export class MovieListingComponent implements OnInit {
     this.movieService.getUpcomingMovies().subscribe(
       (data) => {
         this.upComingMovies = this.modifyData(data);
-        console.log('upcoming movies ' + this.upComingMovies);
+        // console.log('upcoming movies ' + this.upComingMovies);
       },
       (err) => {
         console.log('Not able to get upcoming movies ', err);
@@ -71,4 +69,5 @@ export class MovieListingComponent implements OnInit {
     }
     return movies;
   }
+  
 }

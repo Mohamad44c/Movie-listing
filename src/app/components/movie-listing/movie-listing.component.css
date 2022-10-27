@@ -15,6 +15,7 @@
   transform: translate(-50%, -50%);
   text-align: center;
 }
+
 .card img {
   border-radius: 10px;
   width: 85%;
@@ -23,9 +24,11 @@
   border-radius: 4px 4px 0 0;
   transition: 0.4s;
 }
+
 .movie-body {
   width: 85%;
 }
+
 .card h4,
 p {
   color: white;
@@ -53,5 +56,5 @@ p {
 .row h1 {
   padding: 0;
   font-size: 55px;
-  color: #f0ad4e;
+  color: #5DA7DB;
 }

@@ -1,38 +1,41 @@
 <div class="container movieContainer">
-  <div class="row">
-    <div class="col-md-4">
+  <div class="row" *ngFor="let movie of movieDetails?.results; let i = index">
+    <div class="col-md-5 imgContainer">
       <img
         class="movieImg"
-        src="https://image.tmdb.org/t/p/w440_and_h660_face//mYLOqiStMxDK3fYZFirgrMt8z5d.jpg"
+        src="{{ movie.backdrop_path }}"
         alt=""
+        *ngIf="i < 1"
       />
     </div>
-    <div
-      class="col-md-7 movieDetails"
-      *ngFor="let movie of movieDetails?.results; let i = index"
-    >
-      <h1 class="movieTitle">{{ movie.title }}</h1>
-      <h1 class="movieRating">Rated {{ movie.vote_average }}/10</h1>
-      <h1 class="moviePlotHeader">Overview</h1>
-      <p class="moviePlot">
-        {{movie.overview}}
+    <div class="col-md-7 movieDetails">
+      <h1 class="movieTitle" *ngIf="i < 1">{{ movie.title }}</h1>
+      <h1 class="movieRating" *ngIf="i < 1">
+        Rated {{ movie.vote_average }}/10
+      </h1>
+      <h1 class="moviePlotHeader" *ngIf="i < 1">Overview</h1>
+      <p class="moviePlot" *ngIf="i < 1">
+        {{ movie.overview }}
       </p>
-      <h1 class="movieCast">Cast: Cast member 1, cast member 2</h1>
+      <h1 class="movieReleaseDate" *ngIf="i < 1">
+        Release date: {{ movie.release_date }}
+      </h1>
     </div>
   </div>
 </div>
+
+<!-- [routerLink]="'/moviedetails/' + recommendedMovies.id" -->
 <div class="container mt-4 border-top">
   <div class="row">
     <h1>Recommended Movies</h1>
     <div
       class="card col-md-4"
-      routerLink="/moviedetails"
       *ngFor="let movie of recommendedMovies?.results; let i = index"
     >
       <img src="{{ movie.backdrop_path }}" class="card-img-top" />
       <div class="movie-body">
         <h4 class="movie-title mt-2">{{ movie.title }}</h4>
-        <p class="movie-rating">Rated {{ movie.vote_average }}/10</p>
+        <p class="movie-rating">Rated {{ movie.vote_average | number : '1.1-1'}} / 10</p>
       </div>
     </div>
   </div>
